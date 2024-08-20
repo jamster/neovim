@@ -33,6 +33,6 @@ M.show_docker_images = function(opts)
     :find()
 end
 
-M.show_docker_images()
+-- M.show_docker_images()
 
 return M

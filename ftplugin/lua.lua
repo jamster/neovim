@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 function test()
-  print 'this is a test -8'
+  -- print 'this is a test -8'
 end
 
 test()
