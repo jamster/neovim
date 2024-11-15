@@ -230,6 +230,19 @@ vim.opt.rtp:prepend(lazypath)
 --
 --
 
+-- Set Ruby-specific keybindings using autocommand
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'ruby',
+  callback = function()
+    -- Keybinding to run the test file
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>tt', ':TestFile<CR>', { noremap = true, silent = true })
+    -- Keybinding to run the nearest test
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>tn', ':TestNearest<CR>', { noremap = true, silent = true })
+    -- Keybinding to format the Ruby file using RuboCop
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>rf', ':!rubocop -A %<CR>', { noremap = true, silent = true })
+  end,
+})
+
 require('lazy').setup {
   spec = 'jamster.lazy',
   change_detection = { notify = true },

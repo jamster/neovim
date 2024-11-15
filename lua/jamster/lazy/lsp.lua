@@ -13,9 +13,8 @@ return {
   },
 
   { 'Bilal2453/luvit-meta', lazy = true },
-
+  -- Main LSP Configuration
   {
-    -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -144,7 +143,7 @@ return {
           -- This may be unwanted, since they displace some of your code
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+              vim.lsp.inlay_hint(event.buf)
             end, '[T]oggle Inlay [H]ints')
           end
         end,
@@ -178,7 +177,6 @@ return {
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
-        --
 
         lua_ls = {
           -- cmd = {...},
@@ -191,6 +189,17 @@ return {
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               -- diagnostics = { disable = { 'missing-fields' } },
+            },
+          },
+        },
+        -- Added Solargraph for Ruby and Rails
+        solargraph = {
+          filetypes = { 'ruby', 'eruby' },
+          settings = {
+            solargraph = {
+              diagnostics = true,
+              formatting = true,
+              completion = true,
             },
           },
         },
